@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "f99ac4c1-ba0e-4654-a296-f9c3646aecc4",
+		"name": "Teachmint exam api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25982232"
+	},
+	"item": [
+		{
+			"name": "Participant",
+			"item": [
+				{
+					"name": "Create Participant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"James Talamayan\",\n    \"email\":\"kferrer@exist.com\",\n    \"mobileNumber\":\"09155355580\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/participant/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Find participant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/participant/1"
+					},
+					"response": []
+				},
+				{
+					"name": "find all participants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/participants"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Expenses",
+			"item": [
+				{
+					"name": "Create Expense",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"creatorId\":2,\n    \"description\":\"Dorm rent\",\n    \"amount\":\"10\",\n    \"type\": \"PERCENT\",\n    //payload below for type EQUAL\n    // \"participantIds\":[2]\n\n    //payload below for type PERCENTAGE\n    \"shares\":[\n        {\n            \"shareAmount\":25,\n            \"userId\":1\n        },\n         {\n            \"shareAmount\":25,\n            \"userId\":2\n        },\n         {\n            \"shareAmount\":50,\n            \"userId\":3\n        }\n    ]\n\n///NOTES:\n// Type can be : EQUAL, EXACT, PERCENT\n//Payload can vary depending on type as i have implemented facade design pattern for Open/Closed Principle\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/expense/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Find User Expense",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//Decided to make this a post request to enable nesting of objects in case of future use and to enable dynamic serialization/deserialization\n\n{\n    \"userId\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/expense/find"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Share",
+			"item": [
+				{
+					"name": "Find User Balances",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/share/find"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
